@@ -1,0 +1,119 @@
+[
+  {
+    "Name": "Customer 1",
+    "Projects": [
+      {
+        "Name": "Project 1.1",
+        "Expenses": [
+          {
+            "ExpenseDate": "2019-09-28",
+            "Name": "velit do dolor eu",
+            "Amount": 131.96,
+            "Description": "Laboris do minim magna Lorem consequat amet ut ea cillum sit esse aliqua."
+          },
+          {
+            "ExpenseDate": "2019-07-28",
+            "Name": "fugiat nulla commodo veniam",
+            "Amount": 62,
+            "Description": "Officia voluptate sint consequat incididunt non Lorem do excepteur ipsum dolor."
+          }
+        ]
+      },
+      {
+        "Name": "Project 2.1",
+        "Expenses": [
+          {
+            "ExpenseDate": "2019-07-04",
+            "Name": "laboris cupidatat sit sint",
+            "Amount": 78.03,
+            "Description": "Nulla do do labore eiusmod officia velit cillum cillum dolore ex."
+          },
+          {
+            "ExpenseDate": "2019-07-06",
+            "Name": "sit aute ullamco quis",
+            "Amount": 123.28,
+            "Description": "Qui irure dolore eu velit non fugiat deserunt."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Customer 2",
+    "Projects": [
+      {
+        "Name": "Project 1.2",
+        "Expenses": [
+          {
+            "ExpenseDate": "2019-02-21",
+            "Name": "deserunt nostrud sit velit",
+            "Amount": 93.93,
+            "Description": "Minim voluptate minim consectetur in ad commodo."
+          },
+          {
+            "ExpenseDate": "2019-06-13",
+            "Name": "incididunt minim minim et",
+            "Amount": 110.12,
+            "Description": "Amet fugiat pariatur dolor et reprehenderit id minim."
+          }
+        ]
+      },
+      {
+        "Name": "Project 2.2",
+        "Expenses": [
+          {
+            "ExpenseDate": "2019-02-05",
+            "Name": "enim mollit ut deserunt",
+            "Amount": 184,
+            "Description": "Aute et laborum exercitation dolor qui nisi ex aliquip sint ea aliquip culpa sit."
+          },
+          {
+            "ExpenseDate": "2019-03-08",
+            "Name": "sint cillum proident dolore",
+            "Amount": 177.12,
+            "Description": "Et minim nisi excepteur cillum."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Customer 3",
+    "Projects": [
+      {
+        "Name": "Project 1.3",
+        "Expenses": [
+          {
+            "ExpenseDate": "2019-01-30",
+            "Name": "aliqua ut cillum magna",
+            "Amount": 70.65,
+            "Description": "Nostrud tempor irure in pariatur commodo."
+          },
+          {
+            "ExpenseDate": "2019-03-27",
+            "Name": "qui anim ipsum do",
+            "Amount": 53.53,
+            "Description": "Ex ullamco cillum duis dolore sunt do voluptate incididunt amet proident ea veniam ea culpa."
+          }
+        ]
+      },
+      {
+        "Name": "Project 2.3",
+        "Expenses": [
+          {
+            "ExpenseDate": "2019-05-15",
+            "Name": "et cupidatat commodo aliquip",
+            "Amount": 134.44,
+            "Description": "Officia enim nostrud id sint do irure ipsum fugiat sunt deserunt ex ad exercitation."
+          },
+          {
+            "ExpenseDate": "2019-09-28",
+            "Name": "cupidatat magna nulla enim",
+            "Amount": 91.56,
+            "Description": "Duis commodo ea culpa consectetur laborum amet tempor nulla exercitation nulla enim esse id aliqua."
+          }
+        ]
+      }
+    ]
+  }
+]
