@@ -5,17 +5,18 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace ProjetsExpenses.API.Dtos
+namespace ProjectsExpenses.API.Dtos
 {
-    public class ExpensesListDTO
+    public class ExpensesListDto
     {
 
         public int Id { get; set; }
 
         [DataType(DataType.Date)]
         public string ExpenseDate { get; set; }
-        public string Customer { get; set; }
-        public string Project { get; set; }
+        public int ProjectId { get; set; }
+        public ProjectsListDto Project { get; set; }
+        [DataType(DataType.Currency)]
         public float Amount { get; set; }
 
 

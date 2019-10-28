@@ -6,8 +6,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProjetsExpenses.API.Dtos;
-using ProjetsExpenses.API.Models;
+using ProjectsExpenses.API.Dtos;
+using ProjectsExpenses.API.Models;
 
 namespace ProjetsExpenses.API.Controllers
 {
@@ -28,13 +28,19 @@ namespace ProjetsExpenses.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Expense>>> GetExpenses()
         {
-            var expenses = await _context.Expenses.Include(p=>p.Project).ThenInclude(c=>c.Customer).ToListAsync();
-            var expensesToReturn = _mapper.Map<IEnumerable<ExpensesListDTO>>(expenses);
-            return Ok(expensesToReturn);
+
+            var expenses = await _context.Expenses
+                .Include(p => p.Project)
+                .ThenInclude(c => c.Customer)
+                .ToListAsync();
+                
+            var result = _mapper.Map<IEnumerable<ExpensesListDto>>(expenses);
+            return Ok(result);
+
         }
 
         // GET: api/Expenses/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Expense>> GetExpense(int id)
         {
             var expense = await _context.Expenses.FindAsync(id);

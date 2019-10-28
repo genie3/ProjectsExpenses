@@ -4,14 +4,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjetsExpenses.API.Models
+namespace ProjectsExpenses.API.Models
 {
-    public class Customer
+    public class Project
     {
         public int ID { get; set; }
+       
         [Required]
         public string Name { get; set; }
-        public IEnumerable<Project> Projects { get; set; }
 
+        public int CustomerID { get; set; }
+
+        public virtual Customer Customer { get; set; }
+
+        public virtual IEnumerable<Expense> Expenses { get; set; }
     }
 }

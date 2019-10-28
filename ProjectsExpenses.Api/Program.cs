@@ -8,10 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ProjetsExpenses.API.Data;
-using ProjetsExpenses.API.Models;
+using ProjectsExpenses.API.Data;
+using ProjectsExpenses.API.Models;
 
-namespace ProjetsExpenses.Api
+namespace ProjectsExpenses.Api
 {
     public class Program
     {

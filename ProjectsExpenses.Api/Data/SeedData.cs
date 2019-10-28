@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
-using ProjetsExpenses.API.Models;
+using ProjectsExpenses.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjetsExpenses.API.Data
+namespace ProjectsExpenses.API.Data
 {
     public class SeedData
     {
