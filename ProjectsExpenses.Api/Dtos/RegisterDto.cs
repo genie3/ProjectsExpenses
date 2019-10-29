@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjectsExpenses.API.Models.ViewModels
+namespace ProjectsExpenses.API.Dtos
 {
-    public class RegisterViewModel
+    public class RegisterDto
     {
         [Required]
         [Display(Name = "Username")]

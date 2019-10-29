@@ -1,13 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProjectsExpenses.API.Dtos;
 using ProjectsExpenses.API.Models;
-using ProjectsExpenses.API.Models.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProjectsExpenses.API.Controllers
@@ -29,7 +24,7 @@ namespace ProjectsExpenses.API.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login([FromBody]LoginViewModel model)
+        public async Task<IActionResult> Login([FromBody]LoginDto model)
         {
 
             if (ModelState.IsValid)
@@ -50,7 +45,7 @@ namespace ProjectsExpenses.API.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
+        public async Task<IActionResult> Register([FromBody]RegisterDto model)
         {
             if (ModelState.IsValid)
             {
