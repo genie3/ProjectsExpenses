@@ -14,6 +14,7 @@ using ProjectsExpenses.API.Models;
 using AutoMapper;
 using Newtonsoft.Json.Schema;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ProjectsExpenses.Api
 {
@@ -29,20 +30,29 @@ namespace ProjectsExpenses.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-                options.Password = new PasswordOptions {
+            IdentityBuilder builder = services.AddIdentityCore<ApplicationUser>(options =>
+                options.Password = new PasswordOptions
+                {
                     RequiredLength = 8,
                     RequireUppercase = false,
                     RequireNonAlphanumeric = false,
                     RequireLowercase = false,
                     RequireDigit = false,
                     RequiredUniqueChars = 0
-                })
-                .AddEntityFrameworkStores<DataContext>()
-                .AddDefaultTokenProviders();
-            services.AddControllers(options => 
-                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
-            services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                });
+            //Copy and pasted from ASP.NET/Identity GitHub
+            builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
+            builder.AddEntityFrameworkStores<DataContext>();
+            builder.AddSignInManager<SignInManager<ApplicationUser>>();
+            builder.AddRoleValidator<RoleValidator<IdentityRole>>();
+            builder.AddRoleManager<RoleManager<IdentityRole>>();
+            
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer();
+
+            services.AddControllers();
+            services.AddDbContext<DataContext>(x =>
+                x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(Startup));
         }
 
@@ -55,14 +65,14 @@ namespace ProjectsExpenses.Api
             }
 
             app.UseAuthentication();
-            
+
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireAuthorization();
             });
         }
     }
