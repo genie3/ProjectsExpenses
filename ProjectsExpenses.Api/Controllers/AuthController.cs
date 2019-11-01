@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace ProjectsExpenses.API.Controllers
 {
     [AllowAnonymous]
-    [Route("user/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthController : Controller
     {

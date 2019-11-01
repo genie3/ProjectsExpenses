@@ -15,6 +15,7 @@ using AutoMapper;
 using Newtonsoft.Json.Schema;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text.Json;
 
 namespace ProjectsExpenses.Api
 {
@@ -40,16 +41,17 @@ namespace ProjectsExpenses.Api
                     RequireDigit = false,
                     RequiredUniqueChars = 0
                 });
-            //Copy and pasted from ASP.NET/Identity GitHub
+
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
             builder.AddEntityFrameworkStores<DataContext>();
             builder.AddSignInManager<SignInManager<ApplicationUser>>();
             builder.AddRoleValidator<RoleValidator<IdentityRole>>();
             builder.AddRoleManager<RoleManager<IdentityRole>>();
-            
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer();
 
+            services.AddCors();
             services.AddControllers();
             services.AddDbContext<DataContext>(x =>
                 x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
@@ -68,6 +70,7 @@ namespace ProjectsExpenses.Api
 
             app.UseRouting();
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
