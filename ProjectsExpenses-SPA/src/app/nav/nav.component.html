@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container">
   <a class="navbar-brand" href="#">Projects Expenses</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -12,15 +13,15 @@
       </li>
     </ul>
 
-    <div *ngIf="loggedIn()" class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle">
-          <i class="fa fa-user"></i>Welcome User
+    <div *ngIf="loggedIn()" class="dropdown" dropdown>
+        <a class="btn btn-secondary dropdown-toggle" dropdownToggle>
+          <i class="fa fa-user"></i>Welcome {{authService.decodedToken.unique_name | titlecase}}
         </a>
       
-        <div class="dropdown-menu">
+        <div class="dropdown-menu" *dropdownMenu>
           <a class="dropdown-item" href="#">Action</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#"><i class = "fa fa-sign-out"></i>Logout</a>
+          <a class="dropdown-item" href="#" (click)="logout()"><i class = "fa fa-sign-out"></i>Logout</a>
         </div>
       </div>
 
@@ -31,4 +32,5 @@
         placeholder="Password" required [(ngModel)]="model.password">
       <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
     </form>
+  </div>
 </nav>
