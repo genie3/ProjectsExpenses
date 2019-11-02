@@ -35,7 +35,6 @@ loggedIn() {
 
 decodeToken(token: any) {
   this.decodedToken = this.jwtHelper.decodeToken(token);
-  return this.decodedToken;
 }
 
 }
