@@ -5,6 +5,7 @@ import {MatTableModule} from '@angular/material';
 import {MatSortModule} from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
 import { BsDropdownModule } from 'ngx-bootstrap';
 
 import {ExpenseService} from './_services/expense.service';
@@ -16,10 +17,14 @@ import { ExpensesListComponent } from './expenses/expenses-list/expenses-list.co
 import { CustomersListComponent } from './customers/customers-list/customers-list.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { appRoutes } from './routes';
+import { HomeComponent } from './home/home.component';
 
 
 
 
+export function tokenGetter() {
+   return localStorage.getItem('token');
+}
 
 
 @NgModule({
@@ -28,7 +33,8 @@ import { appRoutes } from './routes';
       ExpensesListComponent,
       CustomersListComponent,
       ProjectsListComponent,
-      NavComponent
+      NavComponent,
+      HomeComponent
    ],
    imports: [
       BrowserModule,
@@ -36,6 +42,13 @@ import { appRoutes } from './routes';
       FormsModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
+      JwtModule.forRoot({
+         config: {
+            tokenGetter,
+            whitelistedDomains: ['localhost:5000'],
+            blacklistedRoutes: ['localhost:5000/api/auth/']
+         }
+      }),
       MatTableModule,
       MatSortModule
    ],

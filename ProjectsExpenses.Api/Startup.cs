@@ -16,6 +16,8 @@ using Newtonsoft.Json.Schema;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text.Json;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace ProjectsExpenses.Api
 {
@@ -49,7 +51,16 @@ namespace ProjectsExpenses.Api
             builder.AddRoleManager<RoleManager<IdentityRole>>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer();
+                .AddJwtBearer( options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
 
             services.AddCors();
             services.AddControllers();

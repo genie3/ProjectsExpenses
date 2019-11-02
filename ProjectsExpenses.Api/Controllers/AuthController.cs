@@ -104,20 +104,6 @@ namespace ProjectsExpenses.API.Controllers
             }
         }
 
-        private string GenerateJSONWebToken(LoginDto userInfo)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
-
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-              _config["Jwt:Issuer"],
-              null,
-              expires: DateTime.Now.AddMinutes(120),
-              signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
         private async Task<string> GenerateJwtToken(ApplicationUser user)
         {
             var claims = new List<Claim>

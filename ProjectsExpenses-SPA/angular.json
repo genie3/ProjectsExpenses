@@ -115,7 +115,7 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ProjectsExpenses-SPA:serve:production"
+              "devServerTarget": "ProjectsExpenses-SPA:serve:development"
             }
           }
         }

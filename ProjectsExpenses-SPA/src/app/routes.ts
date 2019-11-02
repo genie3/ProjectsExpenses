@@ -4,9 +4,10 @@ import { CustomersListComponent } from './customers/customers-list/customers-lis
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 export const appRoutes: Routes = [
-    { path: '', component: AppComponent },
+    {path:'', component: HomeComponent},
     { path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
