@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
 import { Expense } from '../../_model/expense';
@@ -25,6 +25,8 @@ export class ExpensesListComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     });
+  }
+  getexpensesTotal() {
   }
 
 }

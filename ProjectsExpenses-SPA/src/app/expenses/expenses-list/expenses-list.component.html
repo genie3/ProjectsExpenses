@@ -1,7 +1,37 @@
 <div class="container">
-    <div class="row">
-        <div class="col-lg-2 col-md-3 col-sm-6">
-            <p *ngFor="let expense of expenses">{{expense.expenseDate}}</p>
+        <div class="row mt-3 mb-1">
+           <span class="bd-content-title"><h2>Expenses List</h2></span>
         </div>
+        <div class="row">
+           <table class="table table-striped text-center">
+          <thead>
+          <tr>
+            <th class="text-left" scope="col" sortable="name">Name</th>
+            <th scope="col" sortable="expenseDate">Expense Date</th>
+            <th scope="col" sortable="customerName">Customer</th>
+            <th scope="col" sortable="projectName">Project</th>
+            <th class="text-right" scope="col" sortable="amount">Amount</th>
+            <th scope="col" sortable="amount">Control</th>
+            
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let expense of expenses">
+            <td class="text-left">
+              <a [routerLink]="['/expenses/',expense.id]">
+              {{ expense.name }}
+              </a>
+            </td>
+            <td>{{ expense.expenseDate }}</td>
+            <td>{{ expense.project.customer.name }}</td>
+            <td>{{ expense.project.name }}</td>
+            <td class="text-right">{{ expense.amount | currency }}</td>
+            <td>
+                <a class="btn btn-primary mr-1" href="#" placement="left" ngbTooltip="Edit"><i class="fa fa-edit"></i></a>
+                <a class="btn btn-danger" href="#" placement="right" ngbTooltip="Delete"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
     </div>
 </div>

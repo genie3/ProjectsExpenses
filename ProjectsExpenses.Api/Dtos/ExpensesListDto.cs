@@ -12,10 +12,15 @@ namespace ProjectsExpenses.API.Dtos
 
         public int Id { get; set; }
 
+        public string Name { get; set; }
+
         [DataType(DataType.Date)]
         public string ExpenseDate { get; set; }
+
         public int ProjectId { get; set; }
+
         public ProjectsListDto Project { get; set; }
+
         [DataType(DataType.Currency)]
         public float Amount { get; set; }
 

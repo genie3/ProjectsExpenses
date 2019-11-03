@@ -13,15 +13,15 @@
       </li>
     </ul>
 
-    <div *ngIf="loggedIn()" class="dropdown" dropdown>
-        <a class="btn btn-info dropdown-toggle text-light" dropdownToggle>
+    <div *ngIf="loggedIn()" class="dropdown" ngbDropdown>
+        <a class="btn btn-info dropdown-toggle text-light" ngbDropdownToggle>
           <i class="fa fa-user"></i>Welcome {{authService.decodedToken.unique_name | titlecase}}
         </a>
       
-        <div class="dropdown-menu" *dropdownMenu>
-          <a class="dropdown-item" href="#">Action</a>
+        <div class="dropdown-menu" ngbDropdownMenu>
+          <a class="dropdown-item" href="#" ngbDropdownItem>Action</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" (click)="logout()"><i class = "fa fa-sign-out"></i>Logout</a>
+          <a class="dropdown-item" href="#" (click)="logout()" ngbDropdownItem><i class = "fa fa-sign-out"></i>Logout</a>
         </div>
       </div>
 

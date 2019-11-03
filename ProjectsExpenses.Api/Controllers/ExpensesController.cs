@@ -50,8 +50,13 @@ namespace ProjetsExpenses.API.Controllers
             {
                 return NotFound();
             }
+            var expenseFull = await _context.Expenses
+                .Include(p => p.Project)
+                .ThenInclude(c => c.Customer)
+                .FirstAsync(e => e.ID == id);
 
-            return expense;
+            var response = _mapper.Map<ExpenseDetailDto>(expenseFull);
+            return Ok(response);
         }
 
         // PUT: api/Expenses/5
