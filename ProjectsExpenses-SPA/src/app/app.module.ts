@@ -19,6 +19,7 @@ import { appRoutes } from './routes';
 import { HomeComponent } from './home/home.component';
 import { ExpensesDetailComponent } from './expenses/expenses-detail/expenses-detail.component';
 import { ExpenseDetailResolver } from './_resolvers/expense-detail.resolver';
+import { AuthGuard } from './_guards/auth.guard';
 
 
 
@@ -57,7 +58,8 @@ export function tokenGetter() {
    providers: [
       ExpenseService,
       AuthService,
-      ExpenseDetailResolver
+      ExpenseDetailResolver,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent
