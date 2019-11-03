@@ -8,7 +8,7 @@ import { AlertifyService } from '../_services/alertify.service';
 
 @Injectable()
 
-export class ExpenseDetailResolver implements Resolve<Expense> {
+export class ExpensesDetailResolver implements Resolve<Expense> {
 
     constructor( private expenseService: ExpenseService,
                  private alertify: AlertifyService,

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Expense } from '../../_model/expense';
 import { ExpenseService } from '../../_services/expense.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,19 +15,10 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class ExpensesListComponent implements OnInit {
 
   expenses: Expense[];
-  constructor( private expenseService: ExpenseService, private alertify: AlertifyService) { }
+  constructor( private expenseService: ExpenseService, private route: ActivatedRoute) { }
   ngOnInit() {
-    this.loadExpenses();
-  }
-
-  loadExpenses() {
-    this.expenseService.getExpenses().subscribe((result: Expense[]) => {
-      this.expenses = result;
-    }, error => {
-      this.alertify.error(error);
+    this.route.data.subscribe(data => {
+      this.expenses = data.expenses;
     });
   }
-  getexpensesTotal() {
-  }
-
 }
