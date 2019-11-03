@@ -16,15 +16,17 @@ expense: Expense;
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadExpense();
-  }
-
-  loadExpense() {
-    this.expenseService.getExpense(+this.route.snapshot.params['id']).subscribe((response: Expense) => {
-      this.expense = response;
-    }, error => {
-      this.alertify.error(error);
+    this.route.data.subscribe(data => {
+      this.expense = data.expense;
     });
   }
+
+  // loadExpense() {
+  //   this.expenseService.getExpense(+this.route.snapshot.params['id']).subscribe((response: Expense) => {
+  //     this.expense = response;
+  //   }, error => {
+  //     this.alertify.error(error);
+  //   });
+  // }
 
 }

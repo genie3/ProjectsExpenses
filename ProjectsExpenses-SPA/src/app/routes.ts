@@ -5,6 +5,7 @@ import { ProjectsListComponent } from './projects/projects-list/projects-list.co
 import { AuthGuard } from './_guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { ExpensesDetailComponent } from './expenses/expenses-detail/expenses-detail.component';
+import { ExpenseDetailResolver } from './_resolvers/expense-detail.resolver';
 
 export const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -13,7 +14,7 @@ export const appRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
         {path: 'expenses', component: ExpensesListComponent},
-        {path: 'expenses/:id', component: ExpensesDetailComponent},
+        {path: 'expenses/:id', component: ExpensesDetailComponent, resolve: {expense: ExpenseDetailResolver}},
         {path: 'customers', component: CustomersListComponent},
         {path: 'projects', component: ProjectsListComponent},
     ]

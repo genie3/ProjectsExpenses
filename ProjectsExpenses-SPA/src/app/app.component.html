@@ -1,4 +1,18 @@
-<app-nav></app-nav>
-<div class="container">
-  <router-outlet></router-outlet>
+<head>
+  <title>Projects Expenses</title>
+</head>
+    <app-nav></app-nav>  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-1 sidenav">
+    </div>
+    <div class="col-sm-10 text-left"> 
+        <router-outlet></router-outlet>
+    <div class="col-sm-1 sidenav">
+    </div>
+  </div>
 </div>
+
+<footer class="container-fluid text-center mt-5">
+  <small>My training App</small>
+</footer>

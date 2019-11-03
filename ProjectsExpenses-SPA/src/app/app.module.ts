@@ -18,6 +18,7 @@ import { ProjectsListComponent } from './projects/projects-list/projects-list.co
 import { appRoutes } from './routes';
 import { HomeComponent } from './home/home.component';
 import { ExpensesDetailComponent } from './expenses/expenses-detail/expenses-detail.component';
+import { ExpenseDetailResolver } from './_resolvers/expense-detail.resolver';
 
 
 
@@ -55,7 +56,8 @@ export function tokenGetter() {
    ],
    providers: [
       ExpenseService,
-      AuthService
+      AuthService,
+      ExpenseDetailResolver
    ],
    bootstrap: [
       AppComponent

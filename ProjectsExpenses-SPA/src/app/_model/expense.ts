@@ -5,5 +5,6 @@ export interface Expense {
     name: string;
     expenseDate: Date;
     amount: number;
+    description?: string;
     project: Project;
 }
