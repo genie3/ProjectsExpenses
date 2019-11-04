@@ -26,7 +26,7 @@ namespace ProjectsExpenses.API.Controllers
 
         // GET: api/Projects
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Project>>> GetProjects([FromQuery(Name ="CustomerId")] int ? CustomerId)
+        public async Task<ActionResult<IEnumerable<Project>>> GetProjects([FromQuery(Name ="customerId")] int ? CustomerId)
         {
             var projects = await _context.Projects.ToListAsync();
             if (CustomerId != null)

@@ -22,7 +22,7 @@
               {{ expense.name }}
               </a>
             </td>
-            <td>{{ expense.expenseDate }}</td>
+            <td>{{ expense.expenseDate | date:'MM/dd/yyyy'}}</td>
             <td>{{ expense.project.customer.name }}</td>
             <td>{{ expense.project.name }}</td>
             <td class="text-right">{{ expense.amount | currency }}</td>

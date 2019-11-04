@@ -6,5 +6,6 @@ export interface Expense {
     expenseDate: Date;
     amount: number;
     description?: string;
+    projectId: number;
     project: Project;
 }

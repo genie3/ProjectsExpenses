@@ -5,7 +5,7 @@ namespace ProjectsExpenses.API.Dtos
 {
     public class ExpenseDetailDto
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
        
@@ -19,7 +19,7 @@ namespace ProjectsExpenses.API.Dtos
         public string Description { get; set; }
         
         [Required]
-        public int ProjectID { get; set; }
+        public int ProjectId { get; set; }
 
         public virtual ProjectsListDto Project { get; set; }
     }
