@@ -11,12 +11,13 @@
     <div class="col-sm-5">
       <form #editForm="ngForm" (ngSubmit)="updateExpense()">
         <div class="form-group">
-          <label for="expense.expenseDate">Date</label>
+          <label for="expenseDate">Date</label>
           <div class="input-group">
-            <input class="form-control"  required [startDate]=startDate
-              name="expenseDate"[(ngModel)]="expense.expenseDate" ngbDatepicker #d="ngbDatepicker">
+            <input class="form-control" type ="text" required #dp="bsDatepicker" bsDatepicker 
+              placeholder="{{expense.expenseDate | date:'MM/dd/yyyy'}}"
+              name="expenseDate" [(ngModel)]="expense.expenseDate" [bsConfig]="bsConfig"/>
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary fa fa-calendar" (click)="d.toggle()" type="button"></button>
+              <button class="btn btn-outline-secondary fa fa-calendar" type="button" (click)="dp.toggle()"></button>
             </div>
           </div>
         </div>
@@ -29,7 +30,7 @@
         </div>
         <div class="form-group">
           <label for="projectId">Project</label>
-          <select class="form-control" required name="projectId"> (change)=""
+          <select class="form-control" required name="projectId" [(ngModel)]="expense.projectId"> 
             <option *ngFor="let project of customersProjects" [value]="project.id"
               [selected]="project.id === expense.projectId">{{project.name}}</option>
           </select>

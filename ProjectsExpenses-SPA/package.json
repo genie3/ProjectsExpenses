@@ -27,6 +27,7 @@
     "bootswatch": "^4.3.1",
     "font-awesome": "^4.7.0",
     "ng-angular8-datatable": "^0.9.11",
+    "ngx-bootstrap": "^5.2.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
