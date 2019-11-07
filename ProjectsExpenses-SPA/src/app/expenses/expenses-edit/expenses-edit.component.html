@@ -1,7 +1,7 @@
 <div class="container mt-3">
   <h2>Edit</h2>
   <div *ngIf="editForm.dirty" class="row">
-    <div class="col-sm-10  mt-0 mb-0">
+    <div class="col-sm-8  mt-0 mb-0">
       <div class="alert alert-info ">
         <p><strong>Information: </strong> You have made changes. Any unsave changes will be lost</p>
       </div>
@@ -14,7 +14,6 @@
           <label for="expenseDate">Date</label>
           <div class="input-group">
             <input class="form-control" type ="text" required #dp="bsDatepicker" bsDatepicker 
-              placeholder="{{expense.expenseDate | date:'MM/dd/yyyy'}}"
               name="expenseDate" [(ngModel)]="expense.expenseDate" [bsConfig]="bsConfig"/>
             <div class="input-group-append">
               <button class="btn btn-outline-secondary fa fa-calendar" type="button" (click)="dp.toggle()"></button>
@@ -23,16 +22,19 @@
         </div>
         <div class="form-group">
           <label for="customerId">Customer</label>
-          <select #Customers class="form-control" required (change)="reloadProjects(Customers.value);">
-            <option *ngFor="let customer of customers" [value]="customer.id"
-              [selected]="customer.id === expense.project.customerId">{{customer.name}}</option>
+          <select #Customers class="form-control" required (change)="reloadProjects(Customers.value);"
+            [(ngModel)]="expense.project.customer" name="customer">
+            <option *ngFor="let customer of customers" [ngValue]="customer">
+              {{customer.name}}
+            </option>
           </select>
         </div>
         <div class="form-group">
           <label for="projectId">Project</label>
-          <select class="form-control" required name="projectId" [(ngModel)]="expense.projectId"> 
-            <option *ngFor="let project of customersProjects" [value]="project.id"
-              [selected]="project.id === expense.projectId">{{project.name}}</option>
+           <select class="form-control" required name="projectId"  [(ngModel)]="expense.projectId"> 
+            <option *ngFor="let project of customersProjects" [ngValue]="project.id">
+              {{project.name}}
+            </option>
           </select>
         </div>
         <div class="form-group">
@@ -51,7 +53,7 @@
             <div class="col-sm-5">
               <div class="btn-group">
                 <button [disabled]="!editForm.dirty" class="btn btn-success btn-block mr-2 w-50"> Save</button>
-                <button class="btn btn-danger w-50" [routerLink]="['/expenses']"> Cancel</button>
+                <a class="btn btn-danger w-50" [routerLink]="['/expenses']"> Cancel</a>
               </div>
             </div>
           </div>

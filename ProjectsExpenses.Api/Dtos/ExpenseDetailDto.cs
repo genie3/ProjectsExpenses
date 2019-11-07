@@ -7,15 +7,19 @@ namespace ProjectsExpenses.API.Dtos
     {
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
        
         [DataType(DataType.Date)]
+        [Required]
         public DateTime ExpenseDate { get; set; }
         
         [DataType(DataType.Currency)]
+        [Required]
         public float Amount { get; set; }
         
         [StringLength(350)]
+        [Required]
         public string Description { get; set; }
         
         [Required]

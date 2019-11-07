@@ -9,6 +9,7 @@ import { ExpensesDetailResolver } from './_resolvers/expenses-detail.resolver';
 import { ExpensesEditComponent } from './expenses/expenses-edit/expenses-edit.component';
 import { ExpensesEditResolver } from './_resolvers/expenses-edit.resolver';
 import { ExpensesListResolver } from './_resolvers/expenses-list.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -21,7 +22,8 @@ export const appRoutes: Routes = [
         {path: 'expenses/:id', component: ExpensesDetailComponent,
             resolve: {expense: ExpensesDetailResolver}},
         {path: 'expenses/edit/:id', component: ExpensesEditComponent,
-            resolve: {expense: ExpensesEditResolver}},
+            resolve: {expense: ExpensesEditResolver},
+            canDeactivate: [PreventUnsavedChanges]},
         {path: 'customers', component: CustomersListComponent},
         {path: 'projects', component: ProjectsListComponent},
     ]

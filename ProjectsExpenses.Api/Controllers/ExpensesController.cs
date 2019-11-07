@@ -63,18 +63,20 @@ namespace ProjetsExpenses.API.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutExpense(int id, Expense expense)
+        public async Task<IActionResult> UpdateExpense(int id, ExpenseDetailDto expense)
         {
-            if (id != expense.ID)
+            if (id != expense.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(expense).State = EntityState.Modified;
+            var dbExpense = await _context.Expenses.FirstAsync(x => x.ID == id);
+            
+            _mapper.Map(expense, dbExpense);
 
-            try
+           try
             {
-                await _context.SaveChangesAsync();
+                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,7 +86,7 @@ namespace ProjetsExpenses.API.Controllers
                 }
                 else
                 {
-                    throw;
+                    throw new Exception($"Updating Expense {id} failed on server");
                 }
             }
 

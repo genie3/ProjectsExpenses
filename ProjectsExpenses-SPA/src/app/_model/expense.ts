@@ -7,5 +7,5 @@ export interface Expense {
     amount: number;
     description?: string;
     projectId: number;
-    project: Project;
+    project?: Project;
 }

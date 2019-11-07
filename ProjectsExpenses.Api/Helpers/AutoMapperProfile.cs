@@ -16,6 +16,8 @@ namespace ProjetsExpenses.API.Helpers
             CreateMap<Customer, CustomersListDto>();
             CreateMap<Project, ProjectsListDto>();
             CreateMap<Expense, ExpenseDetailDto>();
+            CreateMap<ExpenseDetailDto, Expense>()
+                .ForMember(src => src.Project, opt => opt.Ignore());
 
         }
     }

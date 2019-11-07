@@ -21,4 +21,8 @@ getExpense(id): Observable<Expense> {
   return this.http.get<Expense>(this.baseUrl + id);
 }
 
+updateExpense(id: number, expense: Expense) {
+  return this.http.put(this.baseUrl + id, expense);
+}
+
 }
