@@ -9,12 +9,12 @@
   </div>
   <div class="row">
     <div class="col-sm-5">
-      <form #editForm="ngForm" (ngSubmit)="updateExpense()">
+      <form [formGroup]="editForm" (ngSubmit)="updateExpense()">
         <div class="form-group">
           <label for="expenseDate">Date</label>
           <div class="input-group">
-            <input class="form-control" type ="text" required #dp="bsDatepicker" bsDatepicker 
-              name="expenseDate" [(ngModel)]="expense.expenseDate" [bsConfig]="bsConfig"/>
+            <input class="form-control" type ="text" #dp="bsDatepicker" bsDatepicker 
+              formControlName="expenseDate" [bsConfig]="bsConfig"/>
             <div class="input-group-append">
               <button class="btn btn-outline-secondary fa fa-calendar" type="button" (click)="dp.toggle()"></button>
             </div>
@@ -22,37 +22,36 @@
         </div>
         <div class="form-group">
           <label for="customerId">Customer</label>
-          <select #Customers class="form-control" required (change)="reloadProjects(Customers.value);"
-            [(ngModel)]="expense.project.customer" name="customer">
-            <option *ngFor="let customer of customers" [ngValue]="customer">
+          <select #Customers class="form-control" formControlName="customerId">
+            <option *ngFor="let customer of customers" [value]='customer.id'>
               {{customer.name}}
             </option>
           </select>
         </div>
         <div class="form-group">
           <label for="projectId">Project</label>
-           <select class="form-control" required name="projectId"  [(ngModel)]="expense.projectId"> 
-            <option *ngFor="let project of customersProjects" [ngValue]="project.id">
+           <select class="form-control" name="projectId"  formControlName="projectId"> 
+            <option *ngFor="let project of customersProjects" [value]='project.id'>
               {{project.name}}
             </option>
           </select>
         </div>
         <div class="form-group">
           <label for="name">Name</label>
-          <input class="form-control" type="text" name="name" [(ngModel)]="expense.name" />
+          <input class="form-control" type="text" formControlName="name"/>
         </div>
         <div class="form-group">
           <label for="amount">Amount</label>
-          <input class="form-control" type="text" name="amount" [(ngModel)]="expense.amount" />
+          <input class="form-control"  type="text" required formControlName="amount"/>
         </div>
         <div class="form-group">
           <label for="description">Desription</label>
-          <textarea class="form-control" type="text" name="description" [(ngModel)]="expense.description"></textarea>
+          <textarea class="form-control" type="text" formControlName="description"></textarea>
         </div>
         <div class="row">
             <div class="col-sm-5">
               <div class="btn-group">
-                <button [disabled]="!editForm.dirty" class="btn btn-success btn-block mr-2 w-50"> Save</button>
+                <button [disabled]="!editForm.dirty || editForm.invalid" class="btn btn-success btn-block mr-2 w-50"> Save</button>
                 <a class="btn btn-danger w-50" [routerLink]="['/expenses']"> Cancel</a>
               </div>
             </div>
@@ -61,3 +60,5 @@
     </div>
   </div>
 </div>
+<p>Form Value: {{editForm.value | json}}</p>
+<p>Form Status: {{editForm.status | json}}</p>

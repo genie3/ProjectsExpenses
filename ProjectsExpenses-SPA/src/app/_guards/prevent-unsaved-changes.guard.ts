@@ -5,7 +5,7 @@ import { ExpensesEditComponent } from '../expenses/expenses-edit/expenses-edit.c
 @Injectable()
 export class PreventUnsavedChanges implements CanDeactivate<ExpensesEditComponent> {
     canDeactivate(component: ExpensesEditComponent) {
-        if (component.editForm.dirty) {
+        if (component.unsavedChanges()) {
             return confirm('Are you sure you want to leave? Any unsaved changes will be lost');
         }
         return true;

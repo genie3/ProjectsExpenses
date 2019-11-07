@@ -1,6 +1,6 @@
 import { Project } from './project';
 
-export interface Expense {
+export class Expense {
     id: number;
     name: string;
     expenseDate: Date;
@@ -8,4 +8,8 @@ export interface Expense {
     description?: string;
     projectId: number;
     project?: Project;
+
+    public constructor(init?: Partial<Expense>) {
+        Object.assign(this, init);
+    }
 }

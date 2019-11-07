@@ -6,10 +6,10 @@ import { Project } from 'src/app/_model/project';
 import { CustomerService } from 'src/app/_services/customer.service';
 import { ProjectService } from 'src/app/_services/project.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap';
-import { formatDate } from '@angular/common';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+
 
 
 
@@ -19,13 +19,12 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
   styleUrls: ['./expenses-edit.component.css']
 })
 export class ExpensesEditComponent implements OnInit {
-
   expense: Expense;
   customers: Customer[];
   customersProjects: Project[];
   bsConfig: Partial<BsDatepickerConfig>;
+  editForm: FormGroup;
 
-  @ViewChild('editForm', { static: true }) editForm: NgForm;
   @HostListener('window:beforeunload', ['$event'])
     unloadNotification($event: any) {
         if (this.editForm.dirty) {
@@ -39,8 +38,9 @@ export class ExpensesEditComponent implements OnInit {
     private expenseServie: ExpenseService,
     private customerServive: CustomerService,
     private projectService: ProjectService,
-    private alertify: AlertifyService
-  ) {}
+    private alertify: AlertifyService,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -50,27 +50,42 @@ export class ExpensesEditComponent implements OnInit {
     this.loadCustomersProject(this.expense.project.customerId);
     this.bsConfig = {
       containerClass: 'theme-dark-blue',
-      dateInputFormat: 'MM/DD/YYYY'
+      dateInputFormat: 'MM/DD/YYYY',
       };
+    this.editForm = this.formBuilder.group({
+        id: this.expense.id,
+        expenseDate: [new Date(this.expense.expenseDate), Validators.required],
+        customerId: [this.expense.project.customerId, Validators.required],
+        projectId: [this.expense.projectId, Validators.required],
+        name: [this.expense.name, Validators.required],
+        amount: [this.expense.amount, Validators.required],
+        description: [this.expense.description, Validators.required]
+      });
+
+    this.onChange();
+  }
+
+  onChange() {
+    this.editForm.get('customerId').valueChanges.subscribe( value => {
+      this.loadCustomersProject(value);
+    });
   }
   loadCustomers() {
     this.customerServive.getCustomers().subscribe(result => {
       this.customers = result;
-    });
+     });
   }
 
   loadCustomersProject(customerId: number) {
     this.projectService.getCustomerProjects(customerId).subscribe(result => {
       this.customersProjects = result;
-    });
-  }
+    }, () => { },
+    () => {
+      this.editForm.controls.projectId.patchValue(this.customersProjects[0].id);
 
-  reloadProjects(customerId: number) {
-     this.loadCustomersProject(customerId);
-     this.expense.projectId = this.expense.project.id;
-     this.expense.project.customerId = customerId;
-     this.editForm.control.markAsDirty();
     }
+    );
+  }
 
 updateExpense() {
   // this.expenseServie.updateExpense(this.route.snapshot.params.id, this.expense).subscribe(next => {
@@ -79,8 +94,14 @@ updateExpense() {
   // }, error => {
   //   this.alertify.error(error);
   // });
+  this.editForm.controls.customerId.disable();
+  this.expense = new Expense(this.editForm.value);
+  this.editForm.controls.customerId.enable();
   console.log(this.expense);
-  this.editForm.reset(this.expense);
+  // this.editForm.reset(this.expense);
 }
 
+unsavedChanges() {
+  return this.editForm.dirty;
+}
 }
