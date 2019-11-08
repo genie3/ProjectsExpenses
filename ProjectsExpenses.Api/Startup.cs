@@ -18,6 +18,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text.Json;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Net;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using ProjectsExpenses.API.Helpers;
 
 namespace ProjectsExpenses.Api
 {
@@ -36,7 +40,6 @@ namespace ProjectsExpenses.Api
             IdentityBuilder builder = services.AddIdentityCore<ApplicationUser>(options =>
                 options.Password = new PasswordOptions
                 {
-                    RequiredLength = 8,
                     RequireUppercase = false,
                     RequireNonAlphanumeric = false,
                     RequireLowercase = false,
@@ -76,7 +79,16 @@ namespace ProjectsExpenses.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseExceptionHandler(builder => 
+            builder.Run(async context => {
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = context.Features.Get<IExceptionHandlerFeature>();
+                if(error != null)
+                {
+                    context.Response.AddApplicationError(error.Error.Message);
+                    await context.Response.WriteAsync(error.Error.Message);
+                }
+            }));
             app.UseAuthentication();
 
             app.UseRouting();

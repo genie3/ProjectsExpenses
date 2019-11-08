@@ -41,19 +41,23 @@ namespace ProjectsExpenses.API.Controllers
             if (ModelState.IsValid)
             {
                 var appUser = await _userManager.FindByNameAsync(userInfo.UserName);
-                var result = await _signInManager.CheckPasswordSignInAsync(appUser, userInfo.Password, userInfo.RememberMe);
-                if (result.Succeeded)
+                if (appUser != null)
                 {
-                    //var tokenString = GenerateJSONWebToken(userInfo);
-                    var tokenString = GenerateJwtToken(appUser).Result;
-                    return Ok(new { 
-                        token = tokenString,
-                        user = new { appUser.Id, appUser.UserName }
-                    });
-                }
-                else
-                {
-                    return BadRequest(result);
+                    var result = await _signInManager.CheckPasswordSignInAsync(appUser, userInfo.Password, userInfo.RememberMe);
+                    if (result.Succeeded)
+                    {
+                        //var tokenString = GenerateJSONWebToken(userInfo);
+                        var tokenString = GenerateJwtToken(appUser).Result;
+                        return Ok(new
+                        {
+                            token = tokenString,
+                            user = new { appUser.Id, appUser.UserName }
+                        });
+                    }
+                    else
+                    {
+                        return BadRequest(result);
+                    }
                 }
             }
 
