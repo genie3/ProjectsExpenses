@@ -26,6 +26,7 @@ import { ProjectService } from './_services/project.service';
 import { ExpenseService } from './_services/expense.service';
 import { AuthService } from './_services/auth.service';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 
 
 export function tokenGetter() {
@@ -69,7 +70,8 @@ export function tokenGetter() {
       ExpensesDetailResolver,
       ExpensesEditResolver,
       AuthGuard,
-      PreventUnsavedChanges
+      PreventUnsavedChanges,
+      ErrorInterceptorProvider
    ],
    bootstrap: [
       AppComponent
