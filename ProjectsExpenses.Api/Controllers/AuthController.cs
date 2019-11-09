@@ -38,8 +38,6 @@ namespace ProjectsExpenses.API.Controllers
         public async Task<IActionResult> Login([FromBody]LoginDto userInfo)
         {
 
-            if (ModelState.IsValid)
-            {
                 var appUser = await _userManager.FindByNameAsync(userInfo.UserName);
                 if (appUser != null)
                 {
@@ -54,12 +52,9 @@ namespace ProjectsExpenses.API.Controllers
                             user = new { appUser.Id, appUser.UserName }
                         });
                     }
-                    else
-                    {
-                        return BadRequest(result);
-                    }
+                    
                 }
-            }
+            
 
             return Unauthorized();
         }

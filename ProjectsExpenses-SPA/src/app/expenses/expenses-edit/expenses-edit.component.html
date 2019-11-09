@@ -42,7 +42,7 @@
         </div>
         <div class="form-group">
           <label for="amount">Amount</label>
-          <input class="form-control"  type="text" required formControlName="amount"/>
+          <input class="form-control"  type="number" required formControlName="amount"/>
         </div>
         <div class="form-group">
           <label for="description">Desription</label>
@@ -60,5 +60,3 @@
     </div>
   </div>
 </div>
-<p>Form Value: {{editForm.value | json}}</p>
-<p>Form Status: {{editForm.status | json}}</p>
