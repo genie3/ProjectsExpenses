@@ -7,7 +7,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 
-
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { ExpensesListComponent } from './expenses/expenses-list/expenses-list.component';
@@ -29,56 +28,54 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { CustomersListResolver } from './_resolvers/customers-list.resolver';
 import { ProjectsListResolver } from './_resolvers/projects-list.resolver';
-
+import { ExpensesAddComponent } from './expenses/expenses-add/expenses-add.component';
 
 export function tokenGetter() {
-   return localStorage.getItem('token');
+  return localStorage.getItem('token');
 }
 
-
 @NgModule({
-   declarations: [
-      AppComponent,
-      ExpensesListComponent,
-      ExpensesDetailComponent,
-      ExpensesEditComponent,
-      CustomersListComponent,
-      ProjectsListComponent,
-      NavComponent,
-      HomeComponent
-   ],
-   imports: [
-      BrowserModule,
-      HttpClientModule,
-      FormsModule,
-      ReactiveFormsModule,
-      BrowserAnimationsModule,
-      BsDatepickerModule.forRoot(),
-      RouterModule.forRoot(appRoutes),
-      JwtModule.forRoot({
-         config: {
-            tokenGetter,
-            whitelistedDomains: ['localhost:5000'],
-            blacklistedRoutes: ['localhost:5000/api/auth/']
-         }
-      })
-   ],
-   providers: [
-      CustomerService,
-      ProjectService,
-      ExpenseService,
-      AuthService,
-      ExpensesListResolver,
-      ExpensesDetailResolver,
-      ExpensesEditResolver,
-      CustomersListResolver,
-      ProjectsListResolver,
-      AuthGuard,
-      PreventUnsavedChanges,
-      ErrorInterceptorProvider
-   ],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+    AppComponent,
+    ExpensesListComponent,
+    ExpensesDetailComponent,
+    ExpensesEditComponent,
+    ExpensesAddComponent,
+    CustomersListComponent,
+    ProjectsListComponent,
+    NavComponent,
+    HomeComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
+    RouterModule.forRoot(appRoutes),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        whitelistedDomains: ['localhost:5000'],
+        blacklistedRoutes: ['localhost:5000/api/auth/']
+      }
+    })
+  ],
+  providers: [
+    CustomerService,
+    ProjectService,
+    ExpenseService,
+    AuthService,
+    ExpensesListResolver,
+    ExpensesDetailResolver,
+    ExpensesEditResolver,
+    CustomersListResolver,
+    ProjectsListResolver,
+    AuthGuard,
+    PreventUnsavedChanges,
+    ErrorInterceptorProvider
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

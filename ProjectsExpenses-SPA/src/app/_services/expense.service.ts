@@ -4,29 +4,30 @@ import { Observable } from 'rxjs';
 import { Expense } from '../_model/expense';
 import { environment } from '../../environments/environment';
 
-
 @Injectable({
   providedIn: 'root'
 })
-
 export class ExpenseService {
-private baseUrl = environment.apiUrl + 'expenses/';
-constructor(private http: HttpClient) { }
+  private baseUrl = environment.apiUrl + 'expenses/';
+  constructor(private http: HttpClient) {}
 
-getExpenses(): Observable<Expense[]> {
-  return this.http.get<Expense[]>(this.baseUrl);
-}
+  getExpenses(): Observable<Expense[]> {
+    return this.http.get<Expense[]>(this.baseUrl);
+  }
 
-getExpense(id): Observable<Expense> {
-  return this.http.get<Expense>(this.baseUrl + id);
-}
+  getExpense(id): Observable<Expense> {
+    return this.http.get<Expense>(this.baseUrl + id);
+  }
 
-updateExpense(id: number, expense: Expense) {
-  return this.http.put(this.baseUrl + id, expense);
-}
+  addExpense(expense: Expense) {
+    return this.http.post(this.baseUrl, expense);
+  }
 
-deleteExpense(id: number) {
-  return this.http.delete(this.baseUrl + id);
-}
+  updateExpense(id: number, expense: Expense) {
+    return this.http.put(this.baseUrl + id, expense);
+  }
 
+  deleteExpense(id: number) {
+    return this.http.delete(this.baseUrl + id);
+  }
 }

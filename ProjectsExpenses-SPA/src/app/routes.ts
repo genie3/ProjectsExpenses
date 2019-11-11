@@ -12,6 +12,7 @@ import { ExpensesListResolver } from './_resolvers/expenses-list.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { CustomersListResolver } from './_resolvers/customers-list.resolver';
 import { ProjectsListResolver } from './_resolvers/projects-list.resolver';
+import { ExpensesAddComponent } from './expenses/expenses-add/expenses-add.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,10 @@ export const appRoutes: Routes = [
         path: 'expenses',
         component: ExpensesListComponent,
         resolve: { expenses: ExpensesListResolver }
+      },
+      {
+        path: 'expenses/create',
+        component: ExpensesAddComponent
       },
       {
         path: 'expenses/:id',

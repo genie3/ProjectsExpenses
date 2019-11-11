@@ -1,0 +1,57 @@
+<div class="container mt-3">
+    <h2>Add Expense</h2>
+    <div class="row">
+      <div class="col-sm-5">
+        <form [formGroup]="addForm" (ngSubmit)="addExpense()">
+          <div class="form-group">
+            <label for="expenseDate">Date</label>
+            <div class="input-group">
+              <input class="form-control" type ="text" #dp="bsDatepicker" bsDatepicker 
+                formControlName="expenseDate" [bsConfig]="bsConfig"/>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary fa fa-calendar" type="button" (click)="dp.toggle()"></button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="customerId">Customer</label>
+            <select #Customers class="form-control" formControlName="customerId">
+              <option [ngValue] ="null" disabled>Select a Company</option>
+              <option *ngFor="let customer of customers" [value]='customer.id'>
+                {{customer.name}}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="projectId">Project</label>
+             <select class="form-control" name="projectId"  formControlName="projectId">
+              <option *ngIf="customersProjects?.length <= 0" [ngValue] ="null" disabled>Select a Company to see available Projects</option>
+              <option *ngFor="let project of customersProjects" [value]='project.id'>
+                {{project.name}}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" formControlName="name"/>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount</label>
+            <input class="form-control"  type="number" required formControlName="amount"/>
+          </div>
+          <div class="form-group">
+            <label for="description">Desription</label>
+            <textarea class="form-control" type="text" formControlName="description"></textarea>
+          </div>
+          <div class="row">
+              <div class="col-sm-5">
+                <div class="btn-group">
+                  <button [disabled]="!addForm.dirty || addForm.invalid" class="btn btn-success btn-block mr-2 w-50"> Save</button>
+                  <a class="btn btn-danger" [routerLink]="['/expenses']">Cancel</a>
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

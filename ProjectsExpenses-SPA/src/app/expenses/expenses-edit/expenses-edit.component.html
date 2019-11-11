@@ -1,9 +1,9 @@
 <div class="container mt-3">
-  <h2>Edit</h2>
+  <h2>Edit Expense</h2>
   <div *ngIf="editForm.dirty" class="row">
     <div class="col-sm-8  mt-0 mb-0">
       <div class="alert alert-info ">
-        <p><strong>Information: </strong> You have made changes. Any unsave changes will be lost</p>
+        <p><strong>Information: </strong> You have made changes. Any unsaved changes will be lost</p>
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@
             <div class="col-sm-5">
               <div class="btn-group">
                 <button [disabled]="!editForm.dirty || editForm.invalid" class="btn btn-success btn-block mr-2 w-50"> Save</button>
-                <a class="btn btn-danger w-50" [routerLink]="['/expenses']"> Cancel</a>
+                <button class="btn btn-danger w-50" [routerLink]="['/expenses']"> Cancel</button>
               </div>
             </div>
           </div>
