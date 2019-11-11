@@ -28,7 +28,7 @@ namespace ProjectsExpenses.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects([FromQuery(Name ="customerId")] int ? CustomerId)
         {
-            var projects = await _context.Projects.ToListAsync();
+            var projects = await _context.Projects.Include(c => c.Customer).ToListAsync();
             if (CustomerId != null)
             {
                 projects = await _context.Projects.Where(p => p.CustomerID == CustomerId).ToListAsync();

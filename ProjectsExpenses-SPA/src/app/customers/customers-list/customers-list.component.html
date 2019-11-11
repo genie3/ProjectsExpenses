@@ -1,3 +1,24 @@
-<p>
-  customers-list works!
-</p>
+<div class="container">
+  <div class="row mt-3 mb-1">
+    <span class="bd-content-title">
+      <h2>Customers List</h2>
+    </span>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <table class="table table-striped text-center">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>{{ customer.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <a class="btn btn-primary" [routerLink]="['/expenses']">Go Back</a>
+    </div>
+  </div>
+</div>

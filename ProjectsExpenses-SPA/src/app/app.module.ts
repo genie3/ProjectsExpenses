@@ -27,6 +27,8 @@ import { ExpenseService } from './_services/expense.service';
 import { AuthService } from './_services/auth.service';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { CustomersListResolver } from './_resolvers/customers-list.resolver';
+import { ProjectsListResolver } from './_resolvers/projects-list.resolver';
 
 
 export function tokenGetter() {
@@ -69,6 +71,8 @@ export function tokenGetter() {
       ExpensesListResolver,
       ExpensesDetailResolver,
       ExpensesEditResolver,
+      CustomersListResolver,
+      ProjectsListResolver,
       AuthGuard,
       PreventUnsavedChanges,
       ErrorInterceptorProvider

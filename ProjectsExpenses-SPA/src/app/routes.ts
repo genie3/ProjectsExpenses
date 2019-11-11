@@ -10,23 +10,43 @@ import { ExpensesEditComponent } from './expenses/expenses-edit/expenses-edit.co
 import { ExpensesEditResolver } from './_resolvers/expenses-edit.resolver';
 import { ExpensesListResolver } from './_resolvers/expenses-list.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { CustomersListResolver } from './_resolvers/customers-list.resolver';
+import { ProjectsListResolver } from './_resolvers/projects-list.resolver';
 
 export const appRoutes: Routes = [
-    {path: '', component: HomeComponent},
-    { path: '',
+  { path: '', component: HomeComponent },
+  {
+    path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-        {path: 'expenses', component: ExpensesListComponent,
-            resolve: {expenses: ExpensesListResolver}},
-        {path: 'expenses/:id', component: ExpensesDetailComponent,
-            resolve: {expense: ExpensesDetailResolver}},
-        {path: 'expenses/edit/:id', component: ExpensesEditComponent,
-            resolve: {expense: ExpensesEditResolver},
-            canDeactivate: [PreventUnsavedChanges]},
-        {path: 'customers', component: CustomersListComponent},
-        {path: 'projects', component: ProjectsListComponent},
+      {
+        path: 'expenses',
+        component: ExpensesListComponent,
+        resolve: { expenses: ExpensesListResolver }
+      },
+      {
+        path: 'expenses/:id',
+        component: ExpensesDetailComponent,
+        resolve: { expense: ExpensesDetailResolver }
+      },
+      {
+        path: 'expenses/edit/:id',
+        component: ExpensesEditComponent,
+        resolve: { expense: ExpensesEditResolver },
+        canDeactivate: [PreventUnsavedChanges]
+      },
+      {
+        path: 'customers',
+        component: CustomersListComponent,
+        resolve: { customers: CustomersListResolver }
+      },
+      {
+        path: 'projects',
+        component: ProjectsListComponent,
+        resolve: { projects: ProjectsListResolver }
+      }
     ]
-    },
-    {path: '**', redirectTo: '', pathMatch: 'full'},
+  },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

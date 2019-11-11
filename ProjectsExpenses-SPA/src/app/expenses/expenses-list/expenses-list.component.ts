@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ExpensesListComponent implements OnInit {
 
   expenses: Expense[];
-  constructor( private expenseService: ExpenseService, private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.expenses = data.expenses;
