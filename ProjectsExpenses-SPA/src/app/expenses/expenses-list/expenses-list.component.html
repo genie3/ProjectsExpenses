@@ -27,8 +27,8 @@
             <td>{{ expense.project.name }}</td>
             <td class="text-right">{{ expense.amount | currency }}</td>
             <td>
-                <a class="btn btn-primary mr-1 w-10" [routerLink]="['/expenses/edit/',expense.id]" placement="left" ngbTooltip="Edit"><i class="fa fa-edit"></i></a>
-                <a class="btn btn-danger w-10" href="#" placement="right" ngbTooltip="Delete"><i class="fa fa-trash"></i></a>
+                <button class="btn btn-primary mr-1 w-10" [routerLink]="['/expenses/edit/',expense.id]" placement="left" ngbTooltip="Edit"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-danger w-10" href="#" placement="right" ngbTooltip="Delete" (click)="deleteExpense(expense)"><i class="fa fa-trash"></i></button>
             </td>
           </tr>
           </tbody>

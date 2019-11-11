@@ -25,4 +25,8 @@ updateExpense(id: number, expense: Expense) {
   return this.http.put(this.baseUrl + id, expense);
 }
 
+deleteExpense(id: number) {
+  return this.http.delete(this.baseUrl + id);
+}
+
 }
