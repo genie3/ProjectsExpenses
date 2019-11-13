@@ -55,7 +55,7 @@ export class ExpensesEditComponent implements OnInit {
       customerId: [this.expense.project.customerId, Validators.required],
       projectId: [this.expense.projectId, Validators.required],
       name: [this.expense.name, Validators.required],
-      amount: [this.expense.amount, Validators.required],
+      amount: [this.expense.amount, [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
       description: [this.expense.description, Validators.required]
     });
 
@@ -94,7 +94,6 @@ export class ExpensesEditComponent implements OnInit {
       .updateExpense(this.route.snapshot.params.id, this.expense)
       .subscribe(
         () => {
-          this.alertify.success('Expense updated succesfully');
           this.editForm.controls.customerId.enable();
           this.editForm.markAsUntouched();
           this.editForm.markAsPristine();
@@ -103,6 +102,7 @@ export class ExpensesEditComponent implements OnInit {
           this.alertify.error(error);
         },
         () => {
+          this.alertify.success('Expense updated succesfully');
           this.router.navigate(['/expenses/']);
         }
       );

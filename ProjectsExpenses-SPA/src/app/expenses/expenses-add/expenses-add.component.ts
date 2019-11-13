@@ -42,7 +42,7 @@ export class ExpensesAddComponent implements OnInit {
       customerId: [null, Validators.required],
       projectId: [null, Validators.required],
       name: ['', Validators.required],
-      amount: ['', Validators.required],
+      amount: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
       description: ['', Validators.required]
     });
 

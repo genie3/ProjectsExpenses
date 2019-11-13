@@ -13,8 +13,8 @@
         <div class="form-group">
           <label for="expenseDate">Date</label>
           <div class="input-group">
-            <input class="form-control" type ="text" #dp="bsDatepicker" bsDatepicker 
-              formControlName="expenseDate" [bsConfig]="bsConfig"/>
+            <input class="form-control" type="text" #dp="bsDatepicker" bsDatepicker formControlName="expenseDate"
+              [bsConfig]="bsConfig" />
             <div class="input-group-append">
               <button class="btn btn-outline-secondary fa fa-calendar" type="button" (click)="dp.toggle()"></button>
             </div>
@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
           <label for="projectId">Project</label>
-           <select class="form-control" name="projectId"  formControlName="projectId"> 
+          <select class="form-control" name="projectId" formControlName="projectId">
             <option *ngFor="let project of customersProjects" [value]='project.id'>
               {{project.name}}
             </option>
@@ -38,24 +38,25 @@
         </div>
         <div class="form-group">
           <label for="name">Name</label>
-          <input class="form-control" type="text" formControlName="name"/>
+          <input class="form-control" type="text" formControlName="name" />
         </div>
         <div class="form-group">
           <label for="amount">Amount</label>
-          <input class="form-control"  type="number" required formControlName="amount"/>
+          <input class="form-control" formControlName="amount" />
         </div>
         <div class="form-group">
           <label for="description">Desription</label>
           <textarea class="form-control" type="text" formControlName="description"></textarea>
         </div>
         <div class="row">
-            <div class="col-sm-5">
-              <div class="btn-group">
-                <button [disabled]="!editForm.dirty || editForm.invalid" class="btn btn-success btn-block mr-2 w-50"> Save</button>
-                <button class="btn btn-danger w-50" [routerLink]="['/expenses']"> Cancel</button>
-              </div>
+          <div class="col-sm-5">
+            <div class="btn-group">
+              <button [disabled]="!editForm.dirty || editForm.invalid" class="btn btn-success btn-block mr-2 w-50">
+                Save</button>
+              <a class="btn btn-danger w-50" [routerLink]="['/expenses']"> Cancel</a>
             </div>
           </div>
+        </div>
       </form>
     </div>
   </div>
